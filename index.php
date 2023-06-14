@@ -172,23 +172,23 @@
                 <?php
                 $scoreMax = max($scorePlayer1, $scorePlayer2, $scorePlayer3, $scorePlayer4, $scorePlayer5);
                 // var_dump($scoreMax);
-                
+
                 if ($scoreMax === $scorePlayer1) {
-                    echo " Le gagnant est : $namePlayer1";
+                    $winner = $namePlayer1;
                 }
                 if ($scoreMax === $scorePlayer2) {
-                    echo " Le gagnant est : $namePlayer2";
+                    $winner = $namePlayer2;
                 }
                 if ($scoreMax === $scorePlayer3) {
-                    echo " Le gagnant est : $namePlayer3";
+                    $winner = $namePlayer3;
                 }
                 if ($scoreMax === $scorePlayer4) {
-                    echo " Le gagnant est : $namePlayer4";
+                    $winner = $namePlayer4;
                 }
                 if ($scoreMax === $scorePlayer5) {
-                    echo " Le gagnant est : $namePlayer5";
+                    $winner = $namePlayer5;
                 }
-
+                echo "Le gagnant est : $winner";
                 ?>
             </div>
         </section>
