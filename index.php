@@ -31,10 +31,11 @@
             <p class="exercice-txt">Ecrivez la phrase suivante dans une balise HTML P en utilisant les 2 variables ci-dessous :</p>
             <p class="exercice-txt">"<i>Firstname</i> a obtenu <i>score</i> points à cette partie."</p>
             <div class="exercice-sandbox">
+
                 <?php
                 $firstname = "Michel";
                 $score = 327;
-
+                echo "<p>$firstname a obtenu $score points à cette partie.</p>";
                 ?>
             </div>
         </section>
@@ -52,7 +53,11 @@
                 $priceProduct2 = 2.90;
                 $nameProduct3 = "potion";
                 $priceProduct3 = 5.20;
-
+                echo "<ul>
+                <li>article: $nameProduct1 prix: $priceProduct1</li>
+                <li>article: $nameProduct2 prix: $priceProduct2</li>
+                <li>article: $nameProduct3 prix: $priceProduct3</li>
+                </ul>"
                 ?>
             </div>
         </section>
@@ -66,7 +71,13 @@
                 $quantityProduct1 = 1;
                 $quantityProduct2 = 10;
                 $quantityProduct3 = 4;
+                // $total = ($quantityProduct1 * $priceProduct1) + ($quantityProduct2 * $priceProduct2) + ($quantityProduct3 * $priceProduct3);
 
+                $total = $quantityProduct1 * $priceProduct1;
+                $total += $quantityProduct2 * $priceProduct2;
+                $total += $quantityProduct3 * $priceProduct3;
+                $total *= 0.9;
+                echo $total;
                 ?>
             </div>
         </section>
@@ -77,7 +88,9 @@
             <h2 class="exercice-ttl">Question 4</h2>
             <p class="exercice-txt">Affichez le prix le plus élevé des 3 produits ci-dessus.</p>
             <div class="exercice-sandbox">
-
+                <?php
+                echo max($priceProduct1, $priceProduct2, $priceProduct3);
+                ?>
             </div>
         </section>
 
@@ -92,6 +105,20 @@
             <p class="exercice-txt">Affichez dans une liste HTML le nom des produits de la question 2 qui sont présents dans la phrase : "<?= $text1 ?>"</p>
             <div class="exercice-sandbox">
 
+                <ul>
+                    <?php
+
+                    if (str_contains($text1, $nameProduct1)) {
+                        echo "<li>$nameProduct1</li>";
+                    }
+                    if (str_contains($text1, $nameProduct2)) {
+                        echo "<li>$nameProduct2</li>";
+                    }
+                    if (str_contains($text1, $nameProduct3)) {
+                        echo "<li>$nameProduct3</li>";
+                    }
+
+                    ?></ul>
             </div>
         </section>
 
@@ -121,9 +148,9 @@
         <!-- QUESTION 7 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 7</h2>
-            <p class="exercice-txt">En réutilisant les scores de la question pécédente, afficher le nom du joueur ayant obtenu le plus grand score.</p>
+            <p class="exercice-txt">En réutilisant les scores de la question précédente, afficher le nom du joueur ayant obtenu le plus grand score.</p>
             <div class="exercice-sandbox">
-    
+
             </div>
         </section>
 
@@ -133,7 +160,7 @@
             <h2 class="exercice-ttl">Question 8</h2>
             <p class="exercice-txt">Affichez le prénom du joueur le plus long en nombre de caractères.</p>
             <div class="exercice-sandbox">
-                
+
             </div>
         </section>
 
@@ -159,7 +186,7 @@
             <h2 class="exercice-ttl">Question 10</h2>
             <p class="exercice-txt">Afficher le prénom et l'âge du joueur le plus jeune dans une phrase dans une balise HTML P.</p>
             <div class="exercice-sandbox">
-                
+
             </div>
         </section>
     </div>
