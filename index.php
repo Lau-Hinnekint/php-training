@@ -139,8 +139,27 @@
                 $namePlayer5 = "Kevin";
                 $scorePlayer5 = 103;
 
+                echo '<ul>';
+
+                if ($scorePlayer1 > 50 && $scorePlayer1 < 150) {
+                    echo "<li> $namePlayer1 </li>";
+                }
+                if ($scorePlayer2 > 50 && $scorePlayer2 < 150) {
+                    echo "<li> $namePlayer2 </li>";
+                }
+                if ($scorePlayer3 > 50 && $scorePlayer3 < 150) {
+                    echo "<li> $namePlayer3 </li>";
+                }
+                if ($scorePlayer4 > 50 && $scorePlayer4 < 150) {
+                    echo "<li> $namePlayer4 </li>";
+                }
+                if ($scorePlayer5 > 50 && $scorePlayer5 < 150) {
+                    echo "<li> $namePlayer5 </li>";
+                }
+
+                echo '</ul>';
+
                 ?>
-                </ul>
             </div>
         </section>
 
@@ -150,7 +169,27 @@
             <h2 class="exercice-ttl">Question 7</h2>
             <p class="exercice-txt">En réutilisant les scores de la question précédente, afficher le nom du joueur ayant obtenu le plus grand score.</p>
             <div class="exercice-sandbox">
+                <?php
+                $scoreMax = max($scorePlayer1, $scorePlayer2, $scorePlayer3, $scorePlayer4, $scorePlayer5);
+                // var_dump($scoreMax);
+                
+                if ($scoreMax === $scorePlayer1) {
+                    echo " Le gagnant est : $namePlayer1";
+                }
+                if ($scoreMax === $scorePlayer2) {
+                    echo " Le gagnant est : $namePlayer2";
+                }
+                if ($scoreMax === $scorePlayer3) {
+                    echo " Le gagnant est : $namePlayer3";
+                }
+                if ($scoreMax === $scorePlayer4) {
+                    echo " Le gagnant est : $namePlayer4";
+                }
+                if ($scoreMax === $scorePlayer5) {
+                    echo " Le gagnant est : $namePlayer5";
+                }
 
+                ?>
             </div>
         </section>
 
