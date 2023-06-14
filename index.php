@@ -199,7 +199,40 @@
             <h2 class="exercice-ttl">Question 8</h2>
             <p class="exercice-txt">Affichez le prénom du joueur le plus long en nombre de caractères.</p>
             <div class="exercice-sandbox">
+                <?php
+                // var_dump($namePlayer1);
+                $namePlayerLen1 = strlen($namePlayer1);
+                // var_dump($namePlayer2);
+                $namePlayerLen2 = strlen($namePlayer2);
+                // var_dump($namePlayer3);
+                $namePlayerLen3 = strlen($namePlayer3);
+                // var_dump($namePlayer4);
+                $namePlayerLen4 = strlen($namePlayer4);
+                // var_dump($namePlayer5);
+                $namePlayerLen5 = strlen($namePlayer5);
 
+                $maxLen= max($namePlayerLen1, $namePlayerLen2, $namePlayerLen3, $namePlayerLen4, $namePlayerLen5);
+                // var_dump($maxLen);
+
+                if ($maxLen === $namePlayerLen1) {
+                    $winnerLen = $namePlayer1;
+                }
+                if ($maxLen === $namePlayerLen2) {
+                    $winnerLen = $namePlayer2;
+                }
+                if ($maxLen === $namePlayerLen3) {
+                    $winnerLen = $namePlayer3;
+                }
+                if ($maxLen === $namePlayerLen4) {
+                    $winnerLen = $namePlayer4;
+                }
+                if ($maxLen === $namePlayerLen5) {
+                    $winnerLen = $namePlayer5;
+                }
+
+                echo $winnerLen. " a le plus grand nombre de caractères";
+            
+                ?>
             </div>
         </section>
 
