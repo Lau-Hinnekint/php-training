@@ -211,7 +211,7 @@
                 // var_dump($namePlayer5);
                 $namePlayerLen5 = strlen($namePlayer5);
 
-                $maxLen= max($namePlayerLen1, $namePlayerLen2, $namePlayerLen3, $namePlayerLen4, $namePlayerLen5);
+                $maxLen = max($namePlayerLen1, $namePlayerLen2, $namePlayerLen3, $namePlayerLen4, $namePlayerLen5);
                 // var_dump($maxLen);
 
                 if ($maxLen === $namePlayerLen1) {
@@ -230,8 +230,8 @@
                     $winnerLen = $namePlayer5;
                 }
 
-                echo $winnerLen. " a le plus grand nombre de caractères";
-            
+                echo $winnerLen . " a le plus grand nombre de caractères";
+
                 ?>
             </div>
         </section>
@@ -249,7 +249,16 @@
             </ul>
             <p class="exercice-txt">Afficher la valeur de cette variable avec tous les détails.</p>
             <div class="exercice-sandbox">
-
+                <?php
+                $players = [
+                    ["name" => "Tim", "age" =>  25, "scores" => 67],
+                    ["name" => "Morgan", "age" =>  34, "scores" => 198],
+                    ["name" => "Hamed", "age" =>  27, "scores" => 21],
+                    ["name" => "Camille", "age" =>  47, "scores" => 134],
+                    ["name" => "Kevin", "age" =>  31, "scores" => 103]
+                ];
+                var_dump($players);
+                ?>
             </div>
         </section>
 
@@ -258,7 +267,59 @@
             <h2 class="exercice-ttl">Question 10</h2>
             <p class="exercice-txt">Afficher le prénom et l'âge du joueur le plus jeune dans une phrase dans une balise HTML P.</p>
             <div class="exercice-sandbox">
+                <?php
+                for ($i = 0; $i < sizeof($players); $i++) {
+                    if (!isset($ageYounger) || $players[$i]['age'] < $ageYounger) {
+                        $ageYounger = $players[$i]['age'];
+                        $nameYounger = $players[$i]['name'];
+                    }
+                }
 
+                echo "<p> Le joueur le plus jeune est $nameYounger et son age est de $ageYounger.</p>";
+                
+                for ($i = 0; $i < sizeof($players); $i++) {
+                    if (!isset($youngerIndex) || $players[$i]['age'] < $players[$youngerIndex]['age']) {
+                        $youngerIndex = $i;
+                    }
+                }
+
+                echo "<p> Le joueur le plus jeune est {$players[$youngerIndex]['name']} et son age est de {$players[$youngerIndex]['age']}.</p>";
+                
+                $ageYounger3 = $players[0]['age'];
+                foreach($players as $player) {
+                    if ($player['age'] <= $ageYounger3) {
+                        $ageYounger3 = $player['age'];
+                        $nameYounger3 = $player['name'];
+                    }
+                }
+                echo "<p> Le joueur le plus jeune est $nameYounger3 et son age est de $ageYounger3.</p>";
+
+                foreach($players as $player) {
+                    if (!isset($ageYounger2) || $player['age'] <  $ageYounger2) {
+                        $ageYounger2 = $player['age'];
+                        $nameYounger2 = $player['name'];
+                    }
+                }
+                echo "<p> Le joueur le plus jeune est $nameYounger2 et son age est de $ageYounger2.</p>";
+
+
+                foreach($players as $index => $player) {
+                    if (!isset($youngerIndex2) || $player['age'] <  $players[$youngerIndex2]['age']) {
+                        $youngerIndex2 = $index;
+                    }
+                }
+                echo "<p> Le joueur le plus jeune est {$players[$youngerIndex2]['name']} et son age est de $ageYounger2.</p>";
+
+                
+                foreach($players as $player) {
+                    if (!isset($youngerPlayer) || $player['age'] <  $youngerPlayer['age']) {
+                        $youngerPlayer = $player;
+                    }
+                }
+                echo "<p> Le joueur le plus jeune est {$youngerPlayer['name']} et son age est de {$youngerPlayer['age']}.</p>";
+
+
+                ?>
             </div>
         </section>
     </div>
