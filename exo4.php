@@ -38,7 +38,25 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 1</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau et retourne la chaîne de caractère HTML permettant d'afficher les valeurs du tableau sous la forme d'une liste.</p>
             <div class="exercice-sandbox">
+                <?php
+                /**
+                 * Return every value from array in HTML list.
+                 *
+                 * @param array $array input array
+                 * @return string HTML list
+                 */
+                function getListFromArray(array $array): string
+                {
+                    $htmlList = '';
+                    foreach ($array as $item) {
+                        $htmlList .= "<li>$item</li>";
+                    }
+                    return "<ul>$htmlList</ul>";
+                }
 
+                echo getListFromArray($array);
+
+                ?>
             </div>
         </section>
 
@@ -47,7 +65,30 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 2</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau d'entiers et retourne uniquement les valeurs paires. Afficher les valeurs du tableau sous la forme d'une liste HTML.</p>
             <div class="exercice-sandbox">
+                <?php
 
+                /**
+                 * Return every even value from array
+                 *
+                 * @param array $array Input values
+                 * @return array Even values
+                 */
+                function getEvenFromArray(array $array): array
+                {
+                    $arrayEven = [];
+                    foreach ($array as $value) {
+                        if ($value % 2 == 0) {
+                            $arrayEven[] = $value;
+                        }
+                    }
+                    return $arrayEven;
+                }
+
+                $evenValues = getEvenFromArray($array);
+
+                echo getListFromArray($evenValues);
+
+                ?>
             </div>
         </section>
 
