@@ -135,9 +135,9 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
                 }
 
                 echo getListFromArray(getValuesOfEvenIndexes($array));
-                
+
                 echo '<br>';
-                
+
                 function getValuesOfEvenIndexes2(array $array): array
                 {
                     foreach ($array as $i => $v) {
@@ -147,7 +147,7 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
                     }
                     return $array;
                 }
-                
+
                 echo getListFromArray(getValuesOfEvenIndexes2($array));
 
                 var_dump($array);
@@ -161,7 +161,29 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 4</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau d'entiers. La fonction doit retourner les valeurs du tableau mulipliées par 2.</p>
             <div class="exercice-sandbox">
+                <?php
 
+                function getMultiplyBy2(array $array): array
+                {
+                    $numberList = [];
+                    foreach ($array as $value) {
+                        $numberList[] = $value * 2;
+                    }
+                    return $numberList;
+                }
+
+                var_dump(getMultiplyBy2($array));
+
+                function getMultiplyBy2b(array $array): array
+                {
+                    // return array_map(function ($value) {
+                    //     return $value * 2;
+                    // }, $array);
+                    return array_map(fn ($value) => $value * 2, $array);
+                }
+                var_dump(getMultiplyBy2b($array));
+
+                ?>
             </div>
         </section>
 
