@@ -254,7 +254,7 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
                     }
                     return $array;
                 }
-                
+
                 var_dump(getIntersection($arrayA, $arrayB));
 
                 ?>
@@ -266,7 +266,33 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 7</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre 2 tableaux et retourne un tableau des valeurs du premier tableau qui ne sont pas dans le second</p>
             <div class="exercice-sandbox">
+                <?php
 
+                var_dump(array_diff($arrayA, $arrayB));
+
+                /**
+                 * Undocumented function
+                 *
+                 * @param array $arrayA
+                 * @param array $arrayB
+                 * @param boolean $unique
+                 * @return array
+                 */
+                function getDifference(array $arrayA, array $arrayB, bool $unique = false): array
+                {
+                    $array = [];
+                    foreach ($arrayA as $key => $value) {
+                        if (!in_array($value, $arrayB)) {
+                            $array[$key] = $value;
+                        }
+                    }
+                    if ($unique) return array_unique($array);
+                    return $array;
+                }
+
+                var_dump(getDifference($arrayA, $arrayB));
+
+                ?>
             </div>
         </section>
 
@@ -276,7 +302,9 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 8</h2>
             <p class="exercice-txt">Réécrire la fonction précédente pour lui ajouter un paramètre booléen facultatif. Si celui-ci est à true, le tableau retourné sera sans doublons</p>
             <div class="exercice-sandbox">
-
+                <?php
+                var_dump(getDifference($arrayA, $arrayB, true));
+                ?>
             </div>
         </section>
 
@@ -286,7 +314,15 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 9</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau et un entier et retourne les n premiers éléments du tableau.</p>
             <div class="exercice-sandbox">
+                <?php
+                function getNValuesFromArray(array $array, int $length): array
+                {
+                    return array_slice($array, 0, $length);
+                }
 
+                var_dump(getNValuesFromArray($array, 4));
+
+                ?>
             </div>
         </section>
     </div>
