@@ -1,5 +1,7 @@
 <?php
 
+require 'includes/_functions.php';
+
 $array = [12, 65, 95, 41, 85, 63, 71, 64];
 
 $arrayA = [12, "le", 95, 12, 85, "le", 71, "toi", 95, "la"];
@@ -56,17 +58,6 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
 
                 // echo getListFromArray($array);
 
-                /**
-                 * Return every value from array in HTML list.
-                 *
-                 * @param array $array input array
-                 * @return string HTML list
-                 */
-                function getListFromArray(array $array): string
-                {
-                    $a = array_map(fn ($v) => "<li>$v</li>", $array);
-                    return '<ul>' . implode('', $a) . '</ul>';
-                }
 
                 echo getListFromArray($array);
 

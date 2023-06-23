@@ -1,5 +1,7 @@
 <?php
 
+require 'includes/_functions.php';
+
 // Json file
 try {
     $fileContent = file_get_contents("datas/series.json");
@@ -48,7 +50,30 @@ try {
             <h2 class="exercice-ttl">Question 1</h2>
             <p class="exercice-txt">Récupérer dans un tableau puis afficher l'ensemble des plateformes de diffusion des séries. Afficher les par ordre alphabétique.</p>
             <div class="exercice-sandbox">
+                <?php
+                // $getAvailableOn = function ($serie) {
+                //     return $serie['availableOn'];
+                // };
+                // $availableOn = array_unique(array_map($getAvailableOn, $series));
 
+                $availableOn = array_unique(array_map(fn($serie) => $serie['availableOn'], $series));
+                sort($availableOn);
+
+                // echo implode("\n", $availableOn);
+                echo getListFromArray($availableOn);
+
+                $platforms = [];
+                foreach ($series as $serie) {
+                    $platforms[] = $serie['availableOn'];
+                }
+
+                sort($platforms);
+
+                // var_dump(array_unique($platforms));
+                echo getListFromArray(array_unique($platforms));
+
+
+                ?>
             </div>
         </section>
 
@@ -78,7 +103,7 @@ try {
             <p class="exercice-txt">Si l'URL de la page appelée comporte l'identifiant d'une série, alors afficher toutes les informations de la série ci-dessous.</p>
             <p class="exercice-txt">Si l'identifiant ne correspond à aucune série, afficher un message d'erreur.</p>
             <div class="exercice-sandbox">
-                
+
             </div>
         </section>
 
@@ -116,7 +141,7 @@ try {
             <div class="exercice-sandbox">
 
             </div>
-        </section> 
+        </section>
 
     </div>
     <div class="copyright">© Guillaume Belleuvre, 2023 - DWWM</div>
