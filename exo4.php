@@ -192,7 +192,21 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 4 bis</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau d'entiers et un entier. La fonction doit retourner les valeurs du tableau divisées par le second paramètre</p>
             <div class="exercice-sandbox">
+                <?php
 
+                function divideArray(array $array, int $integer): array
+                {
+                    // $newArray = [];
+                    // foreach ($array as $value) {
+                    //     $newArray[] = $value / $integer;
+                    // }
+                    // return $newArray;
+
+                    return array_map(fn ($value) => $value / $integer, $array);
+                }
+
+                var_dump(divideArray($array, 9));
+                ?>
             </div>
         </section>
 
@@ -201,7 +215,24 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 5</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau d'entiers ou de chaînes de caractères et retourne le tableau sans doublons</p>
             <div class="exercice-sandbox">
+                <?php
+                var_dump(array_unique($arrayA));
 
+                function getArrayWithoutDuplication(array $array): array
+                {
+                    $newArray = [];
+                    foreach($array as $key => $value) {
+                        if (!in_array($value, $newArray)) {
+                            $newArray[$key] = $value;
+                        }
+                    }
+                    return $newArray;
+                }
+
+                var_dump(getArrayWithoutDuplication($arrayA));
+
+
+                ?>
             </div>
         </section>
 
