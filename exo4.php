@@ -45,13 +45,27 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
                  * @param array $array input array
                  * @return string HTML list
                  */
+                // function getListFromArray(array $array): string
+                // {
+                //     $htmlList = '';
+                //     foreach ($array as $item) {
+                //         $htmlList .= "<li>$item</li>";
+                //     }
+                //     return "<ul>$htmlList</ul>";
+                // }
+
+                // echo getListFromArray($array);
+
+                /**
+                 * Return every value from array in HTML list.
+                 *
+                 * @param array $array input array
+                 * @return string HTML list
+                 */
                 function getListFromArray(array $array): string
                 {
-                    $htmlList = '';
-                    foreach ($array as $item) {
-                        $htmlList .= "<li>$item</li>";
-                    }
-                    return "<ul>$htmlList</ul>";
+                    $a = array_map(fn ($v) => "<li>$v</li>", $array);
+                    return '<ul>' . implode('', $a) . '</ul>';
                 }
 
                 echo getListFromArray($array);
@@ -88,6 +102,18 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
 
                 echo getListFromArray($evenValues);
 
+                echo '<br>';
+
+                function getEvenFromArray2(array $array): array
+                {
+                    // return array_filter($array, function($v) {
+                    //     return $v % 2 === 0;
+                    // });
+                    return array_filter($array, fn ($v) => $v % 2 === 0);
+                }
+
+                $evenValues2 = getEvenFromArray2($array);
+                echo getListFromArray($evenValues2);
                 ?>
             </div>
         </section>
@@ -97,6 +123,35 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 3</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre un tableau d'entiers et retourne uniquement les entiers d'index pair</p>
             <div class="exercice-sandbox">
+
+                <?php
+
+                function getValuesOfEvenIndexes(array $array): array
+                {
+                    // $evenIndexes = array_filter(array_keys($array), fn($i) => $i % 2 === 0);
+                    // return array_intersect_key($array, $evenIndexes);
+
+                    return array_filter($array, fn ($i) => $i % 2 === 0, ARRAY_FILTER_USE_KEY);
+                }
+
+                echo getListFromArray(getValuesOfEvenIndexes($array));
+                
+                echo '<br>';
+                
+                function getValuesOfEvenIndexes2(array $array): array
+                {
+                    foreach ($array as $i => $v) {
+                        if ($i % 2 !== 0) {
+                            unset($array[$i]);
+                        }
+                    }
+                    return $array;
+                }
+                
+                echo getListFromArray(getValuesOfEvenIndexes2($array));
+
+                var_dump($array);
+                ?>
 
             </div>
         </section>
