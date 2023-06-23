@@ -221,7 +221,7 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
                 function getArrayWithoutDuplication(array $array): array
                 {
                     $newArray = [];
-                    foreach($array as $key => $value) {
+                    foreach ($array as $key => $value) {
                         if (!in_array($value, $newArray)) {
                             $newArray[$key] = $value;
                         }
@@ -241,7 +241,23 @@ $arrayB = [85, "toi", 95, "la", 65, 94, 85, "avec", 37, "chat"];
             <h2 class="exercice-ttl">Question 6</h2>
             <p class="exercice-txt">Déclarer une fonction qui prend en paramètre 2 tableaux et retourne un tableau représentant l'intersection des 2</p>
             <div class="exercice-sandbox">
+                <?php
+                var_dump(array_intersect($arrayA, $arrayB));
 
+                function getIntersection(array $arrayA, array $arrayB): array
+                {
+                    $array = [];
+                    foreach ($arrayA as $key => $value) {
+                        if (in_array($value, $arrayB)) {
+                            $array[$key] = $value;
+                        }
+                    }
+                    return $array;
+                }
+                
+                var_dump(getIntersection($arrayA, $arrayB));
+
+                ?>
             </div>
         </section>
 
