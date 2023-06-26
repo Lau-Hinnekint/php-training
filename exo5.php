@@ -92,11 +92,20 @@ try {
                 // }
                 // echo '</ul>';
 
-                $var = array_map('getHtmlFromSerie', $series);
+                
+                $style = isset($_GET['style']) ? urldecode($_GET['style']) : null;
+
+                if (is_null($style)) {
+                    $seriesFilter = $series;
+                } else {
+                    $seriesFilter = array_filter($series, fn($serie) => in_array($style, $serie['styles']));
+                }
+
+                $var = array_map('getHtmlFromSerie', $seriesFilter);
                 echo getListFromArray($var, 'serie-list', 'serie-item');
 
                 ?>
-                
+
             </div>
         </section>
 
@@ -118,33 +127,29 @@ try {
             <div class="exercice-sandbox">
                 <?php
 
-                    $id = isset($_GET['serie']) ? intval($_GET['serie']) : null;
-                    if (is_null($id)) {
-                        echo '<p class="warning-msg">Aucune série sélectionnée.</p>';
-                    } else {    
-                        $serie = getSerieFromId($id);
-                        if (is_null($serie)) {
-                            echo '<p class="warning-msg">Cette série est introuvable.</p>';
-                        }
-                        else {
-                            echo '<article>';
-                            foreach ($serie as $key => $value) {
-                                if (is_array($value)) {
-                                    echo "<p>$key : ".implode(', ', $value)."</p>";
-                                }
-                                else if (is_bool($value)) {
-                                    echo "<p>$key : ".($value ? 'oui' : 'non')."</p>";
-                                }
-                                else if ($key === 'image') {
-                                    echo '<img src="'.$value.'">';
-                                }
-                                else {
-                                    echo "<p>$key : $value</p>";
-                                }
+                $id = isset($_GET['serie']) ? intval($_GET['serie']) : null;
+                if (is_null($id)) {
+                    echo '<p class="warning-msg">Aucune série sélectionnée.</p>';
+                } else {
+                    $serie = getSerieFromId($id);
+                    if (is_null($serie)) {
+                        echo '<p class="warning-msg">Cette série est introuvable.</p>';
+                    } else {
+                        echo '<article>';
+                        foreach ($serie as $key => $value) {
+                            if (is_array($value)) {
+                                echo "<p>$key : " . implode(', ', $value) . "</p>";
+                            } else if (is_bool($value)) {
+                                echo "<p>$key : " . ($value ? 'oui' : 'non') . "</p>";
+                            } else if ($key === 'image') {
+                                echo '<img src="' . $value . '">';
+                            } else {
+                                echo "<p>$key : $value</p>";
                             }
-                            echo '</article>';
                         }
+                        echo '</article>';
                     }
+                }
 
                 ?>
             </div>
@@ -155,7 +160,37 @@ try {
             <h2 class="exercice-ttl">Question 5</h2>
             <p class="exercice-txt">Récupérer dans un tableau l'ensemble des styles de séries dans une liste HTML. Afficher les par ordre alphabétique dans une liste HTML.</p>
             <div class="exercice-sandbox">
+                <ul>
 
+                    <?php
+                    // var_dump($series);
+
+                    $styles = [];
+                    foreach ($series as $serie) {
+                        foreach ($serie['styles'] as $index => $style) {
+                            if (!in_array($style, $styles)) {
+                                $styles[] = $style;
+                                echo '<li>' . $style . '</li>';
+                            }
+                        }
+                    }
+                    ?>
+                </ul>
+
+                <br>
+
+                <?php
+
+                $arrayStyles = array_map(fn ($serie) => $serie['styles'], $series);
+
+                $mergeStyles = array_merge(...$arrayStyles);
+
+                $uniqueStyles = array_unique($mergeStyles);
+
+                sort($uniqueStyles);
+
+                echo getListFromArray($uniqueStyles);
+                ?>
             </div>
         </section>
 
@@ -164,7 +199,19 @@ try {
             <h2 class="exercice-ttl">Question 6</h2>
             <p class="exercice-txt">Ajoutez après chaque style de la liste ci-dessus, le nombre de séries correspondantes entre parenthèses.</p>
             <div class="exercice-sandbox">
+                <?php
+                $stylesCount = array_count_values($mergeStyles);
+                // var_dump($stylesCount);
+                
+                // echo '<ul>';
+                // foreach ($stylesCount as $style => $nb) {
+                //     echo '<li>'.$style.' ('.$nb.')</li>';
+                // }
+                // echo '</ul>';
 
+
+                echo getListFromArray(array_map(fn($s, $n) => '<a href="?style='.urlencode($s).'">'.$s.'</a> ('.$n.')', array_keys($stylesCount), array_values($stylesCount)));
+                ?>
             </div>
         </section>
 
