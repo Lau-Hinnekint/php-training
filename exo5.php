@@ -92,12 +92,6 @@ try {
                 // }
                 // echo '</ul>';
 
-                function getHtmlFromSerie(array $serie) :string {
-                    $html = '<h3>'.$serie['name'].'</h3>';
-                    $html .= '<img class="serie-img" src="'.$serie['image'].'" alt="">';
-                    return $html;
-                }
-
                 $var = array_map('getHtmlFromSerie', $series);
                 echo getListFromArray($var, 'serie-list', 'serie-item');
 
@@ -122,7 +116,37 @@ try {
             <p class="exercice-txt">Si l'URL de la page appelée comporte l'identifiant d'une série, alors afficher toutes les informations de la série ci-dessous.</p>
             <p class="exercice-txt">Si l'identifiant ne correspond à aucune série, afficher un message d'erreur.</p>
             <div class="exercice-sandbox">
+                <?php
 
+                    $id = isset($_GET['serie']) ? intval($_GET['serie']) : null;
+                    if (is_null($id)) {
+                        echo '<p class="warning-msg">Aucune série sélectionnée.</p>';
+                    } else {    
+                        $serie = getSerieFromId($id);
+                        if (is_null($serie)) {
+                            echo '<p class="warning-msg">Cette série est introuvable.</p>';
+                        }
+                        else {
+                            echo '<article>';
+                            foreach ($serie as $key => $value) {
+                                if (is_array($value)) {
+                                    echo "<p>$key : ".implode(', ', $value)."</p>";
+                                }
+                                else if (is_bool($value)) {
+                                    echo "<p>$key : ".($value ? 'oui' : 'non')."</p>";
+                                }
+                                else if ($key === 'image') {
+                                    echo '<img src="'.$value.'">';
+                                }
+                                else {
+                                    echo "<p>$key : $value</p>";
+                                }
+                            }
+                            echo '</article>';
+                        }
+                    }
+
+                ?>
             </div>
         </section>
 
