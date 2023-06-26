@@ -1,0 +1,35 @@
+a,
+a:link,
+a:visited {
+    color: #000;
+}
+
+.series-container {
+    gap: 1rem;
+}
+.serie {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.serie-ttl {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .serie {
+        width: 40%;
+    }
+    .series-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .serie {
+        width: 20%;
+    }
+}
