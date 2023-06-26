@@ -1,0 +1,29 @@
+.serie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.serie-item {
+    list-style: none;
+}
+
+.serie-img {
+    max-width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+    .serie-item {
+        width: calc(50% - .5rem);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .serie-item {
+        width: calc(25% - .75rem);
+    }
+}
+

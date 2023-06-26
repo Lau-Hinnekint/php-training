@@ -21,6 +21,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Introduction PHP - Exo 5</title>
 </head>
 
@@ -56,7 +57,7 @@ try {
                 // };
                 // $availableOn = array_unique(array_map($getAvailableOn, $series));
 
-                $availableOn = array_unique(array_map(fn($serie) => $serie['availableOn'], $series));
+                $availableOn = array_unique(array_map(fn ($serie) => $serie['availableOn'], $series));
                 sort($availableOn);
 
                 // echo implode("\n", $availableOn);
@@ -72,7 +73,6 @@ try {
                 // var_dump(array_unique($platforms));
                 echo getListFromArray(array_unique($platforms));
 
-
                 ?>
             </div>
         </section>
@@ -83,7 +83,26 @@ try {
             <p class="exercice-txt">Afficher la liste de toutes les séries avec l'image principale et son titre</p>
             <p class="exercice-txt">Afficher une seule série par ligne sur les plus petits écrans, 2 séries par ligne sur les écrans intermédiaires et 4 séries par ligne sur un écran d'ordinateur.</p>
             <div class="exercice-sandbox">
+                <?php
+                // echo '<ul class="serie-list">';
+                // foreach ($series as $serie) {
+                //     // echo $serie['id'];
+                //     echo '<li class="serie-item"><h3>'.$serie['name'].'</h3>';
+                //     echo '<img class="serie-img" src="'.$serie['image'].'" alt=""></li>';
+                // }
+                // echo '</ul>';
 
+                function getHtmlFromSerie(array $serie) :string {
+                    $html = '<h3>'.$serie['name'].'</h3>';
+                    $html .= '<img class="serie-img" src="'.$serie['image'].'" alt="">';
+                    return $html;
+                }
+
+                $var = array_map('getHtmlFromSerie', $series);
+                echo getListFromArray($var, 'serie-list', 'serie-item');
+
+                ?>
+                
             </div>
         </section>
 
