@@ -40,3 +40,35 @@ function getSerieFromId(int $id) :array|null {
     }
     return null;
 }
+
+
+function getNavigation(array $pages): string
+{
+    $links = array_map(function ($page) {
+        $active = $page['link'] == basename($_SERVER['PHP_SELF']) ? ' active' : '';
+        return '<a href="' . $page['link'] . '" class="main-nav-link' . $active . '">' . $page['title'] . '</a>';
+    }, $pages);
+
+    return '<nav class="main-nav">' . getListFromArray($links, 'main-nav-list') . '</nav>';
+}
+
+
+function getNavigation2(array $pages): string
+{
+    $html = '<nav class="main-nav"><ul class="main-nav-list">';
+    foreach ($pages as $page) {
+        $active = $page['link'] == basename($_SERVER['PHP_SELF']) ? ' active' : '';
+        $html .= '<li><a href="' . $page['link'] . '" class="main-nav-link' . $active . '">' . $page['title'] . '</a></li>';
+    }
+    $html .= '</ul></nav>';
+    return $html;
+}
+
+function getCurrentPageTitle(array $pages) :string  {
+    foreach ($pages as $page) {
+        if ($page['link'] == basename($_SERVER['PHP_SELF'])) {
+            return $page['name'];
+        }
+    }
+    return '';
+}
